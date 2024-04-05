@@ -3,21 +3,28 @@ import LeftSideNav from "../../components/shared/LeftSideNav/LeftSideNav";
 import RightSideNav from "../../components/shared/RightSideNav/RightSideNav";
 import Navbar from "../../components/shared/Navbar/Navbar";
 import BreakingNews from "./BreakingNews";
+import { useLoaderData } from "react-router-dom";
+import NewsCard from "../../components/NewsCard/NewsCard";
 
 const Home = () => {
+  const news = useLoaderData()
+  console.log(news);
+  
   return (
     <div>
       <Header />
       <BreakingNews />
       <Navbar />
-      <div className="grid md:grid-cols-4 gap-6 border">
-        <div className="border">
+      <div className="grid md:grid-cols-4 gap-6">
+        <div className="">
           <LeftSideNav />
         </div>
-        <div className="border md:col-span-2">
-          <h2 className="text-5xl">News coming soon</h2>
+        {/* news container */}
+        <div className="md:col-span-2 space-y-7">
+          <h2 className="text-xl font-semibold mb-5">Dragon News Home</h2>
+          {news.map(n => <NewsCard key={n._id} news={n} />)}
         </div>
-        <div className="border">
+        <div>
           <RightSideNav />
         </div>
       </div>
